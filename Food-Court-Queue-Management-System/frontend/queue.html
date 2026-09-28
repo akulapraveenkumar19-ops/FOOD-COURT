@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Queue & DS Visualizer - Food Court</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="assets/food-images/burger.svg">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo-group">
+        <div class="logo-icon">🍔</div>
+        <div class="logo-text">
+          <h1>GOURMET HAVEN</h1>
+          <span>Queue Management System</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="menu.html" class="nav-link">Food Menu</a></li>
+        <li><a href="order.html" class="nav-link">Order & Cart <span id="nav-cart-badge" class="nav-badge" style="display:none;">0</span></a></li>
+        <li><a href="queue.html" class="nav-link active">Live Queue <span id="nav-queue-badge" class="nav-badge">0</span></a></li>
+        <li><a href="billing.html" class="nav-link">Billing & Receipt</a></li>
+        <li><a href="admin.html" class="nav-link">Admin Dashboard</a></li>
+      </ul>
+
+      <div class="nav-controls">
+        <button id="theme-toggle" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">🌙</button>
+        <button class="btn btn-primary btn-sm" id="btn-sim-run" onclick="runSimulation()">▶ Run Simulation</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-wrapper">
+
+    <!-- Queue Counter Header Board -->
+    <section class="queue-header-board">
+      <div class="current-token-display">
+        <div class="token-big-label">NOW SERVING / NEXT TOKEN</div>
+        <div class="token-big-number" id="dash-current-token">T-001</div>
+        <div class="token-customer-meta" id="dash-current-meta">Praveen Kumar • Waiting</div>
+      </div>
+
+      <div class="queue-controls-panel">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <h3 style="font-size:1.3rem; font-weight:800;">Counter Queue Operations</h3>
+            <p style="color:var(--text-muted); font-size:0.9rem;">Manage tokens and customer service state in real-time</p>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase;">Waiting in Line</div>
+            <div style="font-size:1.6rem; font-weight:800; font-family:monospace; color:var(--primary);" id="dash-queue-length">3</div>
+          </div>
+        </div>
+
+        <div class="queue-action-buttons">
+          <button class="btn btn-primary btn-lg" onclick="serveNextCustomer()">
+            🔔 Serve Next Customer
+          </button>
+          <button class="btn btn-outline" onclick="skipCustomer()">
+            ⏭️ Skip Customer
+          </button>
+          <button class="btn btn-outline" onclick="undoLastOrder()">
+            ↩️ Undo Last Order (Stack Pop)
+          </button>
+          <button class="btn btn-danger btn-sm" onclick="clearWaitingQueue()">
+            🗑️ Clear Queue
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Real-Time Queue Simulation Banner -->
+    <div style="background: linear-gradient(135deg, #2a9d8f, #264653); color: white; border-radius: var(--radius-md); padding: 1.25rem 1.75rem; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <h4 style="font-size: 1.15rem; font-weight: 800;">⚡ Real-Time Queue Simulation Mode</h4>
+        <p style="font-size: 0.85rem; opacity: 0.9; margin-top: 0.2rem;">
+          Simulate rapid arrival of 5 customers with different priorities, automated token assignments, and kitchen dispatching.
+        </p>
+      </div>
+      <button class="btn btn-white btn-sm" onclick="runSimulation()">Start Live Simulation 🚀</button>
+    </div>
+
+    <!-- Data Structure Visualization Section -->
+    <section class="visualizer-section">
+      <div class="section-header" style="margin-bottom: 1.75rem;">
+        <div class="section-title-wrap">
+          <h3>🧠 Data Structure Visualizations</h3>
+          <p>Live visual models of C++ data structure representations matching academic standards</p>
+        </div>
+      </div>
+
+      <!-- 1. Normal Queue Visualizer -->
+      <div class="ds-card">
+        <div class="ds-card-header">
+          <h4>1. Normal Queue (FIFO: First-In-First-Out)</h4>
+          <span class="ds-badge">Queue.h / Queue.cpp</span>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+          Customers wait in order of arrival. Enqueue happens at REAR pointer, Dequeue happens at FRONT pointer.
+        </p>
+        <div id="ds-normal-queue">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+
+      <!-- 2. Priority Queue Visualizer -->
+      <div class="ds-card">
+        <div class="ds-card-header">
+          <h4>2. Priority Queue (Multi-Level / Stable Sorted)</h4>
+          <span class="ds-badge">PriorityQueue.h / PriorityQueue.cpp</span>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+          Orders are serviced by priority level: <strong>High (Express) ➔ Medium (Regular) ➔ Low (Normal)</strong>. Within equal priority, FIFO order is strictly preserved.
+        </p>
+        <div id="ds-priority-queue">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+
+      <!-- 3. Circular Queue Visualizer -->
+      <div class="ds-card">
+        <div class="ds-card-header">
+          <h4>3. Circular Queue (Token & Counter Buffer)</h4>
+          <span class="ds-badge">CircularQueue.h / CircularQueue.cpp</span>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+          Fixed-size array slots where rear wraps around to 0 using formula <code>rear = (rear + 1) % Capacity</code> to prevent memory fragmentation.
+        </p>
+        <div id="ds-circular-queue">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+
+      <!-- 4. Deque Visualizer -->
+      <div class="ds-card">
+        <div class="ds-card-header">
+          <h4>4. Double-Ended Queue (Deque)</h4>
+          <span class="ds-badge">Deque.h / Deque.cpp</span>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+          Supports O(1) insertion and deletion at both FRONT and REAR ends using a Doubly Linked List with prev and next pointers.
+        </p>
+        <div id="ds-deque">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+
+      <!-- 5. Order Stack Visualizer -->
+      <div class="ds-card">
+        <div class="ds-card-header">
+          <h4>5. Order Stack (LIFO: Last-In-First-Out)</h4>
+          <span class="ds-badge">Stack.h / Stack.cpp</span>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+          Maintains recent order history. Clicking <em>Undo Last Order</em> pops the TOP element and reverses the operation.
+        </p>
+        <div id="ds-stack">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div><strong>Food Court Queue Management System</strong> • Data Structures Mini Project</div>
+      <div class="footer-links">
+        <a href="menu.html">Menu</a>
+        <a href="order.html">Cart</a>
+        <a href="billing.html">Billing</a>
+        <a href="admin.html">Admin</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      refreshAllViews();
+    });
+  </script>
+</body>
+</html>

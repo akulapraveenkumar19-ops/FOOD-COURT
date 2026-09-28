@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Court Queue Management System</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="assets/food-images/burger.svg">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo-group">
+        <div class="logo-icon">🍔</div>
+        <div class="logo-text">
+          <h1>FOOD COURT</h1>
+          <span>Queue Management System</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="menu.html" class="nav-link">Food Menu</a></li>
+        <li><a href="order.html" class="nav-link">Order & Cart <span id="nav-cart-badge" class="nav-badge" style="display:none;">0</span></a></li>
+        <li><a href="queue.html" class="nav-link">Live Queue <span id="nav-queue-badge" class="nav-badge">0</span></a></li>
+        <li><a href="billing.html" class="nav-link">Billing & Receipt</a></li>
+        <li><a href="admin.html" class="nav-link">Admin Dashboard</a></li>
+      </ul>
+
+      <div class="nav-controls">
+        <button id="theme-toggle" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">🌙</button>
+        <div class="user-badge" id="role-badge">
+          <span>Role:</span>
+          <span class="role-pill customer" id="active-role-text">Customer</span>
+          <button class="btn btn-outline btn-sm" onclick="toggleRoleSwitch()" style="padding: 0.15rem 0.5rem; font-size: 0.75rem;">Switch</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-wrapper">
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+      <div class="hero-content">
+        <h2>Smart Food Court Queue & Token System</h2>
+        <p>
+          Experience lightning-fast food ordering powered by manual C++ Data Structures — Normal Queue, Circular Queue, Priority Queue, Deque, and Stack.
+        </p>
+        <div class="hero-actions">
+          <a href="menu.html" class="btn btn-white btn-lg">🍽️ Explore Menu</a>
+          <a href="queue.html" class="btn btn-secondary btn-lg">⚡ View Live Queue & DS Visualizer</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-token-card">
+          <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted);">Current Active Token</div>
+          <div class="token-badge-pulse" id="hero-token-val">T-001</div>
+          <div style="font-weight: 700;" id="hero-token-name">Praveen Kumar</div>
+          <div style="font-size: 0.85rem; color: var(--secondary); margin-top: 0.25rem;">Status: Preparing in Kitchen</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Real-time Stats Grid -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon orange">⏳</div>
+        <div class="stat-details">
+          <h4>Waiting in Queue</h4>
+          <div class="stat-value" id="metric-waiting">2</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon teal">🔥</div>
+        <div class="stat-details">
+          <h4>Preparing Orders</h4>
+          <div class="stat-value" id="metric-preparing">1</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon yellow">📦</div>
+        <div class="stat-details">
+          <h4>Total Orders</h4>
+          <div class="stat-value" id="metric-total-orders">5</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon purple">💰</div>
+        <div class="stat-details">
+          <h4>Total Revenue</h4>
+          <div class="stat-value" id="metric-revenue">₹1,195</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Navigation Cards -->
+    <div class="section-header">
+      <div class="section-title-wrap">
+        <h3>🚀 Quick Access Modules</h3>
+        <p>Select any module below to interact with the system</p>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+      <!-- Card 1 -->
+      <div class="food-card" style="padding: 1.5rem;">
+        <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">📋</div>
+        <h4 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 0.5rem;">Food Menu & Catalog</h4>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+          Browse 30+ items across Burgers, Pizza, Indian Delicacies, Snacks, and Beverages. Customize quantity and add to cart.
+        </p>
+        <a href="menu.html" class="btn btn-primary" style="margin-top: auto;">Open Food Menu ➔</a>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="food-card" style="padding: 1.5rem;">
+        <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">🎫</div>
+        <h4 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 0.5rem;">Order & Token Generation</h4>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+          Review cart items, select order priority (Emergency/Express, Regular, Normal), and auto-generate unique sequential tokens (T-001, T-002...).
+        </p>
+        <a href="order.html" class="btn btn-primary" style="margin-top: auto;">Place Order & Cart ➔</a>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="food-card" style="padding: 1.5rem;">
+        <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">🧠</div>
+        <h4 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 0.5rem;">Live Queue & DS Visualizer</h4>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+          Interactive visualizer demonstrating Normal Queue, Circular Queue, Priority Queue, Deque, and Stack in action with animations!
+        </p>
+        <a href="queue.html" class="btn btn-secondary" style="margin-top: auto;">View DS Visualizer ➔</a>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="food-card" style="padding: 1.5rem;">
+        <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">🧾</div>
+        <h4 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 0.5rem;">Billing & Thermal Receipt</h4>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+          Generate authentic restaurant-style thermal receipts with Subtotal, 5% GST breakdown, barcode, and simulated payment confirmation.
+        </p>
+        <a href="billing.html" class="btn btn-outline" style="margin-top: auto;">View Billing Receipt ➔</a>
+      </div>
+    </div>
+
+    <!-- Data Structures Overview Banner -->
+    <div class="ds-card" style="background: var(--bg-card); border-left: 6px solid var(--primary); padding: 2rem;">
+      <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 0.75rem;">🛠️ Data Structures Implemented in C++</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem;">
+        <div style="background: var(--bg-alt); padding: 1rem; border-radius: 8px;">
+          <strong>1. Normal Queue (FIFO)</strong>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Handles standard waiting customer line. Enqueue at rear, dequeue from front.</p>
+        </div>
+        <div style="background: var(--bg-alt); padding: 1rem; border-radius: 8px;">
+          <strong>2. Circular Queue</strong>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Fixed memory buffer with modulo arithmetic for counter display and token cycling.</p>
+        </div>
+        <div style="background: var(--bg-alt); padding: 1rem; border-radius: 8px;">
+          <strong>3. Priority Queue</strong>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Serves High (Express/Emergency) orders before Regular and Normal orders.</p>
+        </div>
+        <div style="background: var(--bg-alt); padding: 1rem; border-radius: 8px;">
+          <strong>4. Deque (Double Ended)</strong>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Enables VIP fast-track insertion at Front and cancellation removal from Rear.</p>
+        </div>
+        <div style="background: var(--bg-alt); padding: 1rem; border-radius: 8px;">
+          <strong>5. Stack (LIFO)</strong>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Maintains recent order history and supports instantaneous <em>Undo Last Order</em>.</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <strong>Food Court Queue Management System</strong> • Data Structures Mini Project (C++ & Web)
+      </div>
+      <div class="footer-links">
+        <a href="menu.html">Menu</a>
+        <a href="queue.html">Queue Visualizer</a>
+        <a href="admin.html">Admin</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script>
+    function toggleRoleSwitch() {
+      const current = AppState.get("role", "customer");
+      const next = current === "admin" ? "customer" : "admin";
+      AppState.set("role", next);
+      const roleText = document.getElementById("active-role-text");
+      if (roleText) {
+        roleText.textContent = next === "admin" ? "Admin" : "Customer";
+        roleText.className = `role-pill ${next}`;
+      }
+      showToast(`Switched active role to: ${next.toUpperCase()}`, "info");
+    }
+
+    // Sync hero token display
+    window.addEventListener("DOMContentLoaded", () => {
+      const pq = getPriorityQueueSorted();
+      if (pq.length > 0) {
+        document.getElementById("hero-token-val").textContent = formatToken(pq[0].token);
+        document.getElementById("hero-token-name").textContent = pq[0].customerName;
+      }
+      const role = AppState.get("role", "customer");
+      const roleText = document.getElementById("active-role-text");
+      if (roleText) {
+        roleText.textContent = role === "admin" ? "Admin" : "Customer";
+        roleText.className = `role-pill ${role}`;
+      }
+    });
+  </script>
+</body>
+</html>

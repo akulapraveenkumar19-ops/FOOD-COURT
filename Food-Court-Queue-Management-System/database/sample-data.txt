@@ -1,0 +1,56 @@
+# ============================================================
+# FOOD COURT MANAGEMENT SYSTEM - SAMPLE DATABASE
+# ============================================================
+
+# Format: FOOD | ID | Name | Category | Price | Available(1/0)
+FOOD|101|Classic Burger|Burgers|120.00|1
+FOOD|102|Cheese Burger|Burgers|150.00|1
+FOOD|103|Veg Burger|Burgers|110.00|1
+FOOD|104|Chicken Burger|Burgers|160.00|1
+FOOD|105|Double Chicken Burger|Burgers|220.00|1
+FOOD|106|Paneer Burger|Burgers|140.00|1
+
+FOOD|201|Margherita Pizza|Pizza|199.00|1
+FOOD|202|Farmhouse Pizza|Pizza|259.00|1
+FOOD|203|Paneer Pizza|Pizza|239.00|1
+FOOD|204|Chicken Pizza|Pizza|289.00|1
+FOOD|205|Veggie Pizza|Pizza|219.00|1
+FOOD|206|Cheese Burst Pizza|Pizza|319.00|1
+
+FOOD|301|Masala Dosa|Indian Food|80.00|1
+FOOD|302|Idli (2 pcs)|Indian Food|50.00|1
+FOOD|303|Vada (2 pcs)|Indian Food|60.00|1
+FOOD|304|Paneer Biryani|Indian Food|190.00|1
+FOOD|305|Chicken Biryani|Indian Food|220.00|1
+FOOD|306|Veg Fried Rice|Indian Food|130.00|1
+FOOD|307|Veg Hakka Noodles|Indian Food|140.00|1
+
+FOOD|401|French Fries|Snacks|80.00|1
+FOOD|402|Chicken Nuggets|Snacks|130.00|1
+FOOD|403|Samosa (2 pcs)|Snacks|40.00|1
+FOOD|404|Grilled Sandwich|Snacks|90.00|1
+FOOD|405|Veg Spring Rolls|Snacks|110.00|1
+FOOD|406|Steamed Momos (6 pcs)|Snacks|100.00|1
+
+FOOD|501|Coke (Can)|Beverages|40.00|1
+FOOD|502|Pepsi (Can)|Beverages|40.00|1
+FOOD|503|Sprite (Can)|Beverages|40.00|1
+FOOD|504|Fresh Lemon Soda|Beverages|50.00|1
+FOOD|505|Filter Coffee|Beverages|45.00|1
+FOOD|506|Masala Chai|Beverages|35.00|1
+FOOD|507|Chocolate Milkshake|Beverages|90.00|1
+FOOD|508|Fresh Orange Juice|Beverages|80.00|1
+
+# Format: CUSTOMER | ID | Name | Phone | Token | OrderID | Status | Priority(3:High, 2:Med, 1:Low)
+CUSTOMER|1001|Praveen Kumar|9876543210|1|ORD1001|Waiting|2
+CUSTOMER|1002|Sneha Sharma|9845123456|2|ORD1002|Waiting|3
+CUSTOMER|1003|Rahul Verma|9712345678|3|ORD1003|Preparing|2
+CUSTOMER|1004|Priya Patel|9988776655|4|ORD1004|Ready|1
+CUSTOMER|1005|Vikram Rao|9123456780|5|ORD1005|Completed|2
+
+# Format: ORDER | OrderID | CustID | CustName | Token | Status | Method | Total | Items(Name:Qty:Price;...)
+ORDER|ORD1001|1001|Praveen Kumar|1|Waiting|UPI|200.00|Chicken Burger:1:160;Coke (Can):1:40
+ORDER|ORD1002|1002|Sneha Sharma|2|Waiting|Credit Card|350.00|Cheese Burst Pizza:1:319;Fresh Lemon Soda:1:50
+ORDER|ORD1003|1003|Rahul Verma|3|Preparing|Cash|230.00|Chicken Biryani:1:220
+ORDER|ORD1004|1004|Priya Patel|4|Ready|UPI|160.00|Masala Dosa:1:80;French Fries:1:80
+ORDER|ORD1005|1005|Vikram Rao|5|Completed|Debit Card|220.00|Veg Burger:1:110;French Fries:1:80

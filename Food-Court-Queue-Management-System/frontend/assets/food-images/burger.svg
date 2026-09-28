@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bunGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f4a261"/>
+      <stop offset="100%" stop-color="#e76f51"/>
+    </linearGradient>
+    <linearGradient id="pattyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6f4e37"/>
+      <stop offset="100%" stop-color="#4a3525"/>
+    </linearGradient>
+  </defs>
+  <!-- Background glow -->
+  <circle cx="100" cy="100" r="90" fill="#fff3e6"/>
+  <!-- Bottom Bun -->
+  <path d="M 40 145 C 40 165, 160 165, 160 145 Z" fill="url(#bunGrad)"/>
+  <!-- Patty -->
+  <rect x="36" y="128" width="128" height="18" rx="9" fill="url(#pattyGrad)"/>
+  <!-- Cheese slice -->
+  <polygon points="35,128 165,128 150,138 100,142 50,138" fill="#ffd166"/>
+  <!-- Tomato slices -->
+  <rect x="45" y="118" width="50" height="10" rx="5" fill="#e63946"/>
+  <rect x="105" y="118" width="50" height="10" rx="5" fill="#e63946"/>
+  <!-- Lettuce wavy -->
+  <path d="M 35 118 Q 50 110, 65 118 Q 80 110, 95 118 Q 110 110, 125 118 Q 140 110, 155 118 Q 165 114, 165 118 Z" fill="#2a9d8f"/>
+  <!-- Top Bun -->
+  <path d="M 40 112 C 40 55, 160 55, 160 112 Z" fill="url(#bunGrad)"/>
+  <!-- Sesame seeds -->
+  <ellipse cx="75" cy="80" rx="3" ry="1.5" fill="#ffffff" transform="rotate(-15 75 80)"/>
+  <ellipse cx="100" cy="72" rx="3" ry="1.5" fill="#ffffff"/>
+  <ellipse cx="125" cy="82" rx="3" ry="1.5" fill="#ffffff" transform="rotate(20 125 82)"/>
+  <ellipse cx="90" cy="92" rx="3" ry="1.5" fill="#ffffff" transform="rotate(-10 90 92)"/>
+  <ellipse cx="115" cy="94" rx="3" ry="1.5" fill="#ffffff" transform="rotate(15 115 94)"/>
+</svg>

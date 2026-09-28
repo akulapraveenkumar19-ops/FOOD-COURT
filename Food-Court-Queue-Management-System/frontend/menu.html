@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Menu - Food Court Queue Management</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="assets/food-images/burger.svg">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo-group">
+        <div class="logo-icon">🍔</div>
+        <div class="logo-text">
+          <h1>GOURMET HAVEN</h1>
+          <span>Queue Management System</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="menu.html" class="nav-link active">Food Menu</a></li>
+        <li><a href="order.html" class="nav-link">Order & Cart <span id="nav-cart-badge" class="nav-badge" style="display:none;">0</span></a></li>
+        <li><a href="queue.html" class="nav-link">Live Queue <span id="nav-queue-badge" class="nav-badge">0</span></a></li>
+        <li><a href="billing.html" class="nav-link">Billing & Receipt</a></li>
+        <li><a href="admin.html" class="nav-link">Admin Dashboard</a></li>
+      </ul>
+
+      <div class="nav-controls">
+        <button id="theme-toggle" class="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">🌙</button>
+        <a href="order.html" class="btn btn-primary btn-sm">🛒 View Cart</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-wrapper">
+
+    <div class="section-header">
+      <div class="section-title-wrap">
+        <h3>🍔 Delicious Food Menu</h3>
+        <p>Select your favorite dishes, specify quantity, and add to your order</p>
+      </div>
+
+      <div style="display: flex; gap: 0.75rem; align-items: center;">
+        <input type="text" id="menu-search-input" class="form-control" placeholder="Search dishes (e.g. Burger, Pizza)..." style="width: 260px;" oninput="renderFilteredMenu()">
+      </div>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="filter-tabs">
+      <button class="filter-btn active" onclick="setCategoryFilter('All', this)">🍽️ All Items</button>
+      <button class="filter-btn" onclick="setCategoryFilter('Burgers', this)">🍔 Burgers</button>
+      <button class="filter-btn" onclick="setCategoryFilter('Pizza', this)">🍕 Pizza</button>
+      <button class="filter-btn" onclick="setCategoryFilter('Indian Food', this)">🍛 Indian Food</button>
+      <button class="filter-btn" onclick="setCategoryFilter('Snacks', this)">🍟 Snacks</button>
+      <button class="filter-btn" onclick="setCategoryFilter('Beverages', this)">🥤 Beverages</button>
+    </div>
+
+    <!-- Menu Cards Grid -->
+    <div class="menu-grid" id="menu-container">
+      <!-- Populated dynamically via JavaScript -->
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div><strong>Food Court Queue Management System</strong> • Data Structures Mini Project</div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="order.html">Cart</a>
+        <a href="queue.html">Queue</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script>
+    let activeCategory = "All";
+
+    function setCategoryFilter(category, btnElement) {
+      activeCategory = category;
+      document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+      if (btnElement) btnElement.classList.add("active");
+      renderFilteredMenu();
+    }
+
+    function renderFilteredMenu() {
+      const container = document.getElementById("menu-container");
+      const search = (document.getElementById("menu-search-input")?.value || "").toLowerCase().trim();
+      const menu = AppState.get("menu", []);
+
+      const filtered = menu.filter(item => {
+        const matchesCat = activeCategory === "All" || item.category === activeCategory;
+        const matchesSearch = !search || item.name.toLowerCase().includes(search) || item.category.toLowerCase().includes(search);
+        return matchesCat && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--text-muted);">
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔍</div>
+            <h4>No food items found matching your criteria</h4>
+            <p>Try searching for a different dish or category.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(item => `
+        <div class="food-card">
+          <div class="food-card-img-wrap">
+            <span class="food-category-tag">${item.category}</span>
+            <img src="${item.img}" alt="${item.name}" loading="lazy">
+          </div>
+          <div class="food-card-body">
+            <div class="food-card-header">
+              <h4 class="food-title">${item.name}</h4>
+              <span class="food-price">₹${item.price}</span>
+            </div>
+            <p class="food-desc">${item.desc}</p>
+            <div class="food-card-footer">
+              <div class="qty-control">
+                <button class="qty-btn" onclick="changeCardQty(${item.id}, -1)">-</button>
+                <span class="qty-val" id="qty-${item.id}">1</span>
+                <button class="qty-btn" onclick="changeCardQty(${item.id}, 1)">+</button>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="handleCardAddToCart(${item.id})" ${!item.available ? 'disabled' : ''}>
+                ${item.available ? 'Add to Cart 🛒' : 'Sold Out ❌'}
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function changeCardQty(itemId, delta) {
+      const el = document.getElementById(`qty-${itemId}`);
+      if (el) {
+        let val = parseInt(el.textContent) || 1;
+        val = Math.max(1, Math.min(20, val + delta));
+        el.textContent = val;
+      }
+    }
+
+    function handleCardAddToCart(itemId) {
+      const el = document.getElementById(`qty-${itemId}`);
+      const qty = el ? parseInt(el.textContent) || 1 : 1;
+      addToCart(itemId, qty);
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      renderFilteredMenu();
+    });
+  </script>
+</body>
+</html>

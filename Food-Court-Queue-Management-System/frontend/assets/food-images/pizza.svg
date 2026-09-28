@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <radialGradient id="crustGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="70%" stop-color="#f4a261"/>
+      <stop offset="100%" stop-color="#c86d3b"/>
+    </radialGradient>
+    <radialGradient id="cheeseGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="60%" stop-color="#ffd166"/>
+      <stop offset="90%" stop-color="#fca311"/>
+      <stop offset="100%" stop-color="#e76f51"/>
+    </radialGradient>
+  </defs>
+  <circle cx="100" cy="100" r="90" fill="#fff8e7"/>
+  <!-- Pizza Crust -->
+  <circle cx="100" cy="100" r="82" fill="url(#crustGrad)"/>
+  <!-- Pizza Sauce & Cheese -->
+  <circle cx="100" cy="100" r="70" fill="url(#cheeseGrad)"/>
+  <!-- Pepperoni / Tomatoes -->
+  <circle cx="80" cy="65" r="12" fill="#d90429"/>
+  <circle cx="125" cy="70" r="11" fill="#d90429"/>
+  <circle cx="70" cy="110" r="13" fill="#d90429"/>
+  <circle cx="130" cy="115" r="12" fill="#d90429"/>
+  <circle cx="100" cy="135" r="12" fill="#d90429"/>
+  <circle cx="100" cy="95" r="10" fill="#d90429"/>
+  <!-- Bell peppers / Basil leaves (Green) -->
+  <path d="M 60 85 Q 70 80, 65 92 Z" fill="#2a9d8f"/>
+  <path d="M 110 55 Q 120 50, 115 62 Z" fill="#2a9d8f"/>
+  <path d="M 140 90 Q 150 85, 145 98 Z" fill="#2a9d8f"/>
+  <path d="M 85 125 Q 95 120, 90 132 Z" fill="#2a9d8f"/>
+  <path d="M 115 125 Q 125 120, 120 132 Z" fill="#2a9d8f"/>
+  <!-- Mushrooms / Olives -->
+  <circle cx="85" cy="85" r="5" fill="#2b2d42"/>
+  <circle cx="115" cy="80" r="4.5" fill="#2b2d42"/>
+  <circle cx="110" cy="112" r="5" fill="#2b2d42"/>
+  <circle cx="75" cy="135" r="4.5" fill="#2b2d42"/>
+  <!-- Slices Lines (dotted or subtle) -->
+  <line x1="100" y1="30" x2="100" y2="170" stroke="#c86d3b" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.6"/>
+  <line x1="30" y1="100" x2="170" y2="100" stroke="#c86d3b" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.6"/>
+  <line x1="50" y1="50" x2="150" y2="150" stroke="#c86d3b" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.6"/>
+  <line x1="150" y1="50" x2="50" y2="150" stroke="#c86d3b" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.6"/>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <radialGradient id="idliGrad" cx="45%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="85%" stop-color="#f0f2f5"/>
+      <stop offset="100%" stop-color="#d9e2ec"/>
+    </radialGradient>
+    <linearGradient id="leafGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2d6a4f"/>
+      <stop offset="100%" stop-color="#1b4332"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="90" fill="#f0fff4"/>
+  <!-- Banana Leaf -->
+  <ellipse cx="100" cy="108" rx="84" ry="58" fill="url(#leafGrad)"/>
+  <path d="M 16 108 Q 100 114, 184 108" stroke="#52b788" stroke-width="2" fill="none" opacity="0.6"/>
+  <!-- Idli 1 (Left Back) -->
+  <ellipse cx="70" cy="100" rx="34" ry="24" fill="url(#idliGrad)" stroke="#bcccdc" stroke-width="1.5"/>
+  <!-- Idli 2 (Right Back) -->
+  <ellipse cx="130" cy="100" rx="34" ry="24" fill="url(#idliGrad)" stroke="#bcccdc" stroke-width="1.5"/>
+  <!-- Idli 3 (Center Front) -->
+  <ellipse cx="100" cy="116" rx="36" ry="26" fill="url(#idliGrad)" stroke="#bcccdc" stroke-width="1.5"/>
+  <!-- Idli Texture dots -->
+  <circle cx="95" cy="112" r="1.5" fill="#bcccdc"/>
+  <circle cx="108" cy="116" r="1.5" fill="#bcccdc"/>
+  <circle cx="102" cy="122" r="1.5" fill="#bcccdc"/>
+  <!-- Sambar & Chutney Bowls -->
+  <circle cx="55" cy="62" r="16" fill="#ffffff" stroke="#c0c0c0" stroke-width="2"/>
+  <circle cx="55" cy="62" r="14" fill="#d4a373"/>
+  <circle cx="100" cy="55" r="16" fill="#ffffff" stroke="#c0c0c0" stroke-width="2"/>
+  <circle cx="100" cy="55" r="14" fill="#f8f9fa"/>
+  <circle cx="98" cy="53" r="1.5" fill="#2b2d42"/>
+  <circle cx="145" cy="62" r="16" fill="#ffffff" stroke="#c0c0c0" stroke-width="2"/>
+  <circle cx="145" cy="62" r="14" fill="#e63946"/>
+</svg>

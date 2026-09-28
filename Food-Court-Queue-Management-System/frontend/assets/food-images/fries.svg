@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cupGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e63946"/>
+      <stop offset="100%" stop-color="#ba181b"/>
+    </linearGradient>
+    <linearGradient id="fryGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffee32"/>
+      <stop offset="100%" stop-color="#ffd166"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="90" fill="#fff9eb"/>
+  <!-- French Fries sticks sticking out -->
+  <rect x="62" y="38" width="12" height="70" rx="3" fill="url(#fryGrad)" transform="rotate(-18 62 38)"/>
+  <rect x="76" y="28" width="13" height="85" rx="3" fill="url(#fryGrad)" transform="rotate(-8 76 28)"/>
+  <rect x="94" y="24" width="13" height="88" rx="3" fill="url(#fryGrad)" transform="rotate(2 94 24)"/>
+  <rect x="112" y="29" width="13" height="84" rx="3" fill="url(#fryGrad)" transform="rotate(12 112 29)"/>
+  <rect x="128" y="42" width="12" height="68" rx="3" fill="url(#fryGrad)" transform="rotate(22 128 42)"/>
+  <rect x="85" y="45" width="12" height="65" rx="3" fill="#f4a261" transform="rotate(-3 85 45)"/>
+  <rect x="105" y="44" width="12" height="66" rx="3" fill="#f4a261" transform="rotate(7 105 44)"/>
+
+  <!-- Red Paper Carton -->
+  <polygon points="52,90 148,90 135,168 65,168" fill="url(#cupGrad)"/>
+  <!-- Front cutout scoop -->
+  <path d="M 52 90 Q 100 118, 148 90 L 135 168 L 65 168 Z" fill="#d90429"/>
+  <!-- Yellow emblem/stripe -->
+  <circle cx="100" cy="132" r="16" fill="#ffd166"/>
+  <text x="100" y="138" font-family="Arial, sans-serif" font-weight="bold" font-size="16" text-anchor="middle" fill="#d90429">F</text>
+</svg>
